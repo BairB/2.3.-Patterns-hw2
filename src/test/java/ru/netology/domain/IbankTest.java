@@ -19,9 +19,9 @@ public class IbankTest {
     void shouldRequestWithValidLogin() {
         open("http://localhost:9999");
         val registeredUser = getRegisteredUser("active");
-        $("[data-test-id=\"login\"] .input__control").sendKeys(registeredUser.getLogin());
-        $("[data-test-id=\"password\"] .input__control").sendKeys(registeredUser.getPassword());
-        $$("button").find(exactText("Продолжить")).click();
+        $("[data-test-id = 'login'] .input__control").sendKeys(registeredUser.getLogin());
+        $("[data-test-id = 'password'] .input__control").sendKeys(registeredUser.getPassword());
+        $("[data-test-id = 'action-login'] .button__text").click();
         $(withText("Личный кабинет")).shouldBe(visible);
     }
 
@@ -29,10 +29,10 @@ public class IbankTest {
     void shouldGetErrorIfNotRegisteredUser() {
         open("http://localhost:9999");
         val notRegisteredUser = getUser("active");
-        $("[data-test-id=\"login\"] .input__control").sendKeys(notRegisteredUser.getLogin());
-        $("[data-test-id=\"password\"] .input__control").sendKeys(notRegisteredUser.getPassword());
-        $$("button").find(exactText("Продолжить")).click();
-        $("[data-test-id=\"error-notification\"]").shouldBe(visible)
+        $("[data-test-id = 'login'] .input__control").sendKeys(notRegisteredUser.getLogin());
+        $("[data-test-id = 'password'] .input__control").sendKeys(notRegisteredUser.getPassword());
+        $("[data-test-id = 'action-login'] .button__text").click();
+        $("[data-test-id = 'error-notification'").shouldBe(visible)
                 .shouldHave(text("Неверно указан логин или пароль"));
     }
 
@@ -40,10 +40,10 @@ public class IbankTest {
     void shouldGetErrorIfBlockedUser() {
         open("http://localhost:9999");
         val blockedUser = getRegisteredUser("blocked");
-        $("[data-test-id=\"login\"] .input__control").sendKeys(blockedUser.getLogin());
-        $("[data-test-id=\"password\"] .input__control").sendKeys(blockedUser.getPassword());
-        $$("button").find(exactText("Продолжить")).click();
-        $("[data-test-id=\"error-notification\"]").shouldBe(visible)
+        $("[data-test-id = 'login'] .input__control").sendKeys(blockedUser.getLogin());
+        $("[data-test-id = 'password'] .input__control").sendKeys(blockedUser.getPassword());
+        $("[data-test-id = 'action-login'] .button__text").click();
+        $("[data-test-id = 'error-notification'").shouldBe(visible)
                 .shouldHave(text("Ошибка! Пользователь заблокирован"));
     }
 
@@ -51,10 +51,10 @@ public class IbankTest {
     void shouldGetErrorIfWrongLogin() {
         open("http://localhost:9999");
         val registeredUser = getRegisteredUser("active");
-        $("[data-test-id=\"login\"] .input__control").sendKeys(randomLogin());
-        $("[data-test-id=\"password\"] .input__control").sendKeys(registeredUser.getPassword());
-        $$("button").find(exactText("Продолжить")).click();
-        $("[data-test-id=\"error-notification\"]").shouldBe(visible)
+        $("[data-test-id = 'login'] .input__control").sendKeys(randomLogin());
+        $("[data-test-id = 'password'] .input__control").sendKeys(registeredUser.getPassword());
+        $("[data-test-id = 'action-login'] .button__text").click();
+        $("[data-test-id = 'error-notification'").shouldBe(visible)
                 .shouldHave(text("Неверно указан логин или пароль"));
     }
 
@@ -62,10 +62,10 @@ public class IbankTest {
     void shouldGetErrorIfWrongPassword() {
         open("http://localhost:9999");
         val registeredUser = getRegisteredUser("active");
-        $("[data-test-id=\"login\"] .input__control").sendKeys(registeredUser.getLogin());
-        $("[data-test-id=\"password\"] .input__control").sendKeys(randomPassword());
-        $$("button").find(exactText("Продолжить")).click();
-        $("[data-test-id=\"error-notification\"]").shouldBe(visible)
+        $("[data-test-id = 'login'] .input__control").sendKeys(registeredUser.getLogin());
+        $("[data-test-id = 'password'] .input__control").sendKeys(randomPassword());
+        $("[data-test-id = 'action-login'] .button__text").click();
+        $("[data-test-id = 'error-notification'").shouldBe(visible)
                 .shouldHave(text("Неверно указан логин или пароль"));
     }
 }

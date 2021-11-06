@@ -54,6 +54,4 @@ public class DataGenerator {
             return registeredUser;
         }
     }
-
-
 }
